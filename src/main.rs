@@ -43,5 +43,21 @@ fn main() {
         }
     };
 
-    let lines = GrammarParser::parse(Rule::assemblyfile, content.as_str()).unwrap_or_else(|e| panic!("{}", e));
+    let mut lines = GrammarParser::parse(Rule::assemblyfile, content.as_str()).unwrap_or_else(|e| panic!("{}", e));
+    let lines_iter = match lines.next(){
+        Some(iter) => iter,
+        None => {
+            process::exit(-1);
+        }
+    };
+
+    for line in lines_iter.into_inner() {
+        match line.as_rule() {
+            Rule::instruct_line => {
+                println!("{}",line.as_str());
+            }
+            _ => {
+            }
+        }
+    }
 }
