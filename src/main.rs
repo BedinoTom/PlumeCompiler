@@ -7,6 +7,7 @@ use pest::iterators::Pairs;
 
 use std::fs;
 use std::env;
+use std::ops::Sub;
 use std::process;
 
 #[derive(Parser)]
@@ -59,6 +60,7 @@ fn main() {
 
     let mut jump_table : Vec<Jump> = Vec::new();
     let mut lines_count : u64 = 0;
+    let mut count_label : u64 = 0;
 
     let iter_label = lines_iter.clone();
     for line in iter_label.into_inner() {
@@ -67,12 +69,23 @@ fn main() {
                 let mut label_rules = line.into_inner();
                 let mut string_label_rules = label_rules.next().unwrap().into_inner();
                 let label_str = string_label_rules.next().unwrap().as_str().to_string();
-                jump_table.push(Jump { label: label_str, line: lines_count });
-            }
+                
+                count_label+=1;
+                jump_table.push(Jump { label: label_str, line: (lines_count+1)-count_label });
+                lines_count+=1;
+            },
+            Rule::instruct_line => {
+                lines_count+=1;
+            },
             _ => {
             }
         }
-        lines_count+=1;
+    }
+
+    for jump in jump_table.iter(){
+        println!("Jump");
+        println!("{}",jump.label);
+        println!("{}",jump.line);
     }
 
 
