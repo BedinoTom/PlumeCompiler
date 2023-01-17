@@ -3,6 +3,7 @@ extern crate pest;
 extern crate pest_derive;
 
 use pest::Parser;
+use pest::iterators::Pairs;
 
 use std::fs;
 use std::env;
