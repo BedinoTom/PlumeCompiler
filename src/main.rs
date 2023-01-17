@@ -51,6 +51,18 @@ fn main() {
         }
     };
 
+    let iter_label = lines_iter.clone();
+    for line in iter_label.into_inner() {
+        match line.as_rule() {
+            Rule::label_line => {
+                println!("{}",line.as_str());
+            }
+            _ => {
+            }
+        }
+    }
+
+
     for line in lines_iter.into_inner() {
         match line.as_rule() {
             Rule::instruct_line => {
