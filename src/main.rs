@@ -3,11 +3,9 @@ extern crate pest;
 extern crate pest_derive;
 
 use pest::Parser;
-use pest::iterators::Pairs;
 
 use std::fs;
 use std::env;
-use std::ops::Sub;
 use std::process;
 
 #[derive(Parser)]
@@ -93,6 +91,15 @@ fn main() {
         match line.as_rule() {
             Rule::instruct_line => {
                 println!("Instruction {}",line.as_str());
+                for instruct_iter in line.into_inner(){
+                    match instruct_iter.as_rule() {
+                        Rule::instruct => {
+                            let mut inner_instructs = instruct_iter.into_inner();
+                            println!("Opcode {}", inner_instructs.next().unwrap().as_str());
+                        },
+                        _ => {}
+                    }
+                }
             }
             _ => {
             }
