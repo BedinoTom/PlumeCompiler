@@ -991,7 +991,7 @@
         {
             "opcode" : "11011110",
             "name" : "b",
-            "subname" : "al",
+            "subname" : "",
             "familly" : "branch",
             "signature" : "l",
             "operandes" : [

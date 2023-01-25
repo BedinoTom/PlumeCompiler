@@ -137,8 +137,9 @@ fn main() {
                     match instruct_iter.as_rule() {
                         Rule::instruct => {
                             let mut inner_instructs = instruct_iter.into_inner();
-                            println!("Opcode {}", inner_instructs.next().unwrap().as_str());
+                            let opcode_string = inner_instructs.next().unwrap().as_str();
                             let mut operande_vector : Vec<OperandeValue> = Vec::new();
+                            let mut signature_vector : Vec<char> = Vec::new();
                             while let Some(operande) = inner_instructs.next() {
                                 let mut inner_operande = operande.into_inner();
                                 let operande_word = inner_operande.next().unwrap();
@@ -148,11 +149,18 @@ fn main() {
                                         let term = inner_term.next().unwrap();
                                         match term.as_rule() {
                                             Rule::register => {
-                                                let value : u64 = match term.into_inner().next().unwrap().as_str().parse() {
-                                                    Ok(v) => {v},
-                                                    Err(e) => {
-                                                        println!("value parse error {}",e);
-                                                        process::exit(-1);
+                                                let value : u64 = match term.into_inner().next() {
+                                                    Some(v) => {
+                                                        match v.as_str().parse() {
+                                                            Ok(v) => {v},
+                                                            Err(e) => {
+                                                                println!("value parse error {}",e);
+                                                                process::exit(-1);
+                                                            }
+                                                        }
+                                                    },
+                                                    None => {
+                                                        0
                                                     }
                                                 };
                                                 operande_vector.push(OperandeValue { 
@@ -167,6 +175,7 @@ fn main() {
                                                         value_int: value, 
                                                         value_string: "".to_string() 
                                                     });
+                                                signature_vector.push('r');
                                             },
                                             Rule::immediate => {
                                                 let value : u64 = match term.into_inner().next().unwrap().as_str().parse() {
@@ -188,15 +197,67 @@ fn main() {
                                                         value_int: value, 
                                                         value_string: "".to_string() 
                                                     });
+                                                signature_vector.push('i');
                                             },
                                             _ => {}
                                         }
                                     },
                                     Rule::expression => {
                                         let mut inner_expression = operande_word.into_inner().into_iter();
-                                        //inner_expression.next();
-                                        let offset_expression = inner_expression.next().unwrap();
-                                        println!("Expression {}", offset_expression.as_str());
+                                        inner_expression.next();
+                                        let value : u64 = match inner_expression.next() {
+                                            Some(v) => {
+                                                let string_value = match v.into_inner().next(){
+                                                    Some(o) => {
+                                                        match o.into_inner().next() {
+                                                            Some(n) => {
+                                                                match n.into_inner().next(){
+                                                                    Some(i) => {
+                                                                        i
+                                                                    },
+                                                                    None => {
+                                                                        println!("value parse error");
+                                                                        process::exit(-1);
+                                                                    }
+                                                                }
+                                                            },
+                                                            None => {
+                                                                println!("value parse error ");
+                                                                process::exit(-1);
+                                                            }
+                                                        }
+                                                    }
+                                                    None => {
+                                                        println!("value parse error ");
+                                                        process::exit(-1);
+                                                    }
+                                                };
+                                                match string_value.as_str().parse() {
+                                                    Ok(v) => {v},
+                                                    Err(e) => {
+                                                        println!("value parse error {}",e);
+                                                        process::exit(-1);
+                                                    }
+                                                }
+                                            
+                                            },
+                                            None => {
+                                                0
+                                            }
+                                        };
+                                        operande_vector.push(OperandeValue { 
+                                            operande: Operande{
+                                                phase : "input".to_string(),
+                                                r#type : "term".to_string(),
+                                                size : 1,
+                                                offset : 0,
+                                                offset_bin : 0,
+                                                optional : false
+                                            }, 
+                                            value_int: value, 
+                                            value_string: "".to_string()
+                                        });
+                                        signature_vector.push('t');
                                     },
                                     Rule::label_call => {
                                         let label_name = operande_word.into_inner().into_iter().next().unwrap();
@@ -213,18 +274,23 @@ fn main() {
                                             value_int: 0, 
                                             value_string: label_name.as_str().to_string()
                                         });
+                                        signature_vector.push('l');
                                     }
-                                    _ => {
-                                    }
+                                    _ => {}
                                 }
                             }
+
+                            instructions_vector.push(InstructSet { 
+                                name: opcode_string.to_string(), 
+                                signature: signature_vector.into_iter().collect(), 
+                                operandes: operande_vector 
+                            });
                         },
                         _ => {}
                     }
                 }
             }
-            _ => {
-            }
+            _ => {}
         }
     }
 }
