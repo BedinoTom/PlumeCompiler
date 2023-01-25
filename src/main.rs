@@ -8,6 +8,9 @@ use std::fs;
 use std::env;
 use std::process;
 
+use serde::{Deserialize, Serialize};
+use serde_json::Result;
+
 #[derive(Parser)]
 #[grammar = "grammar.pest"]
 pub struct GrammarParser;
@@ -16,6 +19,45 @@ pub struct Jump {
     label : String,
     line : u64,
 }
+
+#[derive(Serialize, Deserialize, Clone)]
+struct Operande {
+    phase : String,
+    r#type : String,
+    size : usize,
+    offset : usize,
+    offset_bin : usize,
+    optional : bool
+}
+
+#[derive(Serialize, Deserialize)]
+struct Instruct {
+    name : String,
+    subname : String,
+    regex_matcher : String,
+    opcode : String,
+    familly : String,
+    signature : String,
+    operandes: Vec<Operande>,
+}
+
+#[derive(Serialize, Deserialize)]
+struct Instructs {
+    opcodes: Vec<Instruct>
+}
+
+struct InstructSet {
+    name : String,
+    signature : String,
+    operandes : Vec<OperandeValue>
+}
+
+struct OperandeValue{
+    operande : Operande,
+    value_int : u64,
+    value_string : String
+}
+
 
 fn load_file(file_path:String) -> Option<String> {
     println!("{}",file_path.clone());
@@ -86,7 +128,7 @@ fn main() {
         println!("{}",jump.line);
     }
 
-
+    let mut instructions_vector : Vec<InstructSet> = Vec::new();
     for line in lines_iter.into_inner() {
         match line.as_rule() {
             Rule::instruct_line => {
@@ -96,6 +138,86 @@ fn main() {
                         Rule::instruct => {
                             let mut inner_instructs = instruct_iter.into_inner();
                             println!("Opcode {}", inner_instructs.next().unwrap().as_str());
+                            let mut operande_vector : Vec<OperandeValue> = Vec::new();
+                            while let Some(operande) = inner_instructs.next() {
+                                let mut inner_operande = operande.into_inner();
+                                let operande_word = inner_operande.next().unwrap();
+                                match operande_word.as_rule() {
+                                    Rule::term => {
+                                        let mut inner_term = operande_word.into_inner();
+                                        let term = inner_term.next().unwrap();
+                                        match term.as_rule() {
+                                            Rule::register => {
+                                                let value : u64 = match term.into_inner().next().unwrap().as_str().parse() {
+                                                    Ok(v) => {v},
+                                                    Err(e) => {
+                                                        println!("value parse error {}",e);
+                                                        process::exit(-1);
+                                                    }
+                                                };
+                                                operande_vector.push(OperandeValue { 
+                                                        operande: Operande{
+                                                            phase : "input".to_string(),
+                                                            r#type : "register".to_string(),
+                                                            size : 1,
+                                                            offset : 0,
+                                                            offset_bin : 0,
+                                                            optional : false
+                                                        }, 
+                                                        value_int: value, 
+                                                        value_string: "".to_string() 
+                                                    });
+                                            },
+                                            Rule::immediate => {
+                                                let value : u64 = match term.into_inner().next().unwrap().as_str().parse() {
+                                                    Ok(v) => {v},
+                                                    Err(e) => {
+                                                        println!("value parse error {}",e);
+                                                        process::exit(-1);
+                                                    }
+                                                };
+                                                operande_vector.push(OperandeValue { 
+                                                        operande: Operande{
+                                                            phase : "input".to_string(),
+                                                            r#type : "imm".to_string(),
+                                                            size : 1,
+                                                            offset : 0,
+                                                            offset_bin : 0,
+                                                            optional : false
+                                                        }, 
+                                                        value_int: value, 
+                                                        value_string: "".to_string() 
+                                                    });
+                                            },
+                                            _ => {}
+                                        }
+                                    },
+                                    Rule::expression => {
+                                        let mut inner_expression = operande_word.into_inner().into_iter();
+                                        //inner_expression.next();
+                                        let offset_expression = inner_expression.next().unwrap();
+                                        println!("Expression {}", offset_expression.as_str());
+                                    },
+                                    Rule::label_call => {
+                                        let label_name = operande_word.into_inner().into_iter().next().unwrap();
+                                        println!("Label {}", label_name.as_str());
+                                        operande_vector.push(OperandeValue { 
+                                            operande: Operande{
+                                                phase : "input".to_string(),
+                                                r#type : "imm".to_string(),
+                                                size : 1,
+                                                offset : 0,
+                                                offset_bin : 0,
+                                                optional : false
+                                            }, 
+                                            value_int: 0, 
+                                            value_string: label_name.as_str().to_string()
+                                        });
+                                    }
+                                    _ => {
+                                    }
+                                }
+                            }
                         },
                         _ => {}
                     }
