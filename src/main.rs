@@ -6,6 +6,8 @@ use pest::Parser;
 
 use std::fs;
 use std::env;
+use std::fs::File;
+use std::io::Write;
 use std::process;
 
 use serde::{Deserialize, Serialize};
@@ -98,6 +100,19 @@ fn load_file(file_path:String) -> Option<String> {
 fn parse_instructs(data : String) -> Result<Instructs> {
     let p: Result<Instructs> = serde_json::from_str(data.as_str());
     p
+}
+
+fn to_hex(val: &str, len: usize) -> String {
+    let n: u32 = u32::from_str_radix(val, 2).unwrap();
+    format!("{:01$x}", n, len)
+}
+
+fn write_result(bin : Vec<String>, filename : String) -> std::io::Result<()> {
+    let mut file = File::create(filename)?;
+    let word = bin.join(" ");
+    file.write_all(b"v2.0 raw\n")?;
+    file.write_all(word.as_bytes())?;
+    Ok(())
 }
 
 fn main() {
@@ -344,6 +359,7 @@ fn main() {
         }
     }
 
+    let word_bin : Vec<String> = Vec::new();
     for instruct in instructions_vector.iter() {
         let match_instruct = match content_instructs.match_instruction(instruct){
             Some(i) => i,
