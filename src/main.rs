@@ -8,12 +8,13 @@ use std::fs;
 use std::env;
 use std::fs::File;
 use std::io::Write;
+use std::path::Path;
 use std::process;
 
 use serde::{Deserialize, Serialize};
 use serde_json::Result;
 
-use std::{cmp::Ordering, fmt::Binary};
+use std::{fmt::Binary};
 use std::ops::{Add,Sub};
 
 #[derive(Parser)]
@@ -49,7 +50,8 @@ struct Operande {
     size : usize,
     offset : i8,
     offset_bin : i8,
-    optional : bool
+    optional : bool,
+    is_divide : bool
 }
 
 #[derive(Serialize, Deserialize)]
@@ -191,7 +193,7 @@ fn main() {
     println!("Load source file {}", args[1].clone());
     let content = match load_file(args[1].clone()) {
         Some(c) => {
-            c
+            format!("{}\n",c)
         },
         None => {
             process::exit(-1);
@@ -277,7 +279,8 @@ fn main() {
                                                             size : 1,
                                                             offset : 0,
                                                             offset_bin : 0,
-                                                            optional : false
+                                                            optional : false,
+                                                            is_divide : false
                                                         }, 
                                                         value_int: value, 
                                                         value_string: "".to_string() 
@@ -299,7 +302,8 @@ fn main() {
                                                             size : 1,
                                                             offset : 0,
                                                             offset_bin : 0,
-                                                            optional : false
+                                                            optional : false,
+                                                            is_divide : false
                                                         }, 
                                                         value_int: value, 
                                                         value_string: "".to_string() 
@@ -359,7 +363,8 @@ fn main() {
                                                 size : 1,
                                                 offset : 0,
                                                 offset_bin : 0,
-                                                optional : false
+                                                optional : false,
+                                                is_divide : false
                                             }, 
                                             value_int: value, 
                                             value_string: "".to_string()
@@ -376,7 +381,8 @@ fn main() {
                                                 size : 1,
                                                 offset : 0,
                                                 offset_bin : 0,
-                                                optional : false
+                                                optional : false,
+                                                is_divide : false
                                             }, 
                                             value_int: 0, 
                                             value_string: label_name.as_str().to_string()
@@ -427,9 +433,14 @@ fn main() {
 
             if operande_value.operande.r#type == "register" || operande_value.operande.r#type == "imm" || operande_value.operande.r#type == "term"{
                 //instruct_bin[match_operande.offset_bin] = format!("{:01$b}", operande_value.value_int, match_operande.size);
+                println!("{} {}",instruct.name, match_operande.offset_bin);
                 match convert_i8_to_usize(match_operande.offset_bin){
                     Some(i) => {
-                        instruct_bin[i] = convert_numeric_to_binary(operande_value.value_int, match_operande.size);//format!("{:01$b}", operande_value.value_int, match_operande.size);
+                        let mut value_int = operande_value.value_int;
+                        if match_operande.is_divide {
+                            value_int /= 4;
+                        }
+                        instruct_bin[i] = convert_numeric_to_binary(value_int, match_operande.size);//format!("{:01$b}", operande_value.value_int, match_operande.size);
                         println!("bin {}", instruct_bin[i]);
                     },
                     None => {}
@@ -462,8 +473,14 @@ fn main() {
         
     }
 
-    println!("Bin Table:");
-        for bin in word_bin.iter(){
-            println!("{}", bin);
+    let ancestors = format!("bin/{}.bin",Path::new(&args[1].clone().as_str()).file_name().unwrap().to_str().unwrap());
+    word_bin.push("\n".to_string());
+    match write_result(word_bin,ancestors.clone()) {
+        Ok(_) => {
+            println!("Output:{}",ancestors.clone());
+        },
+        Err(e) => {
+            println!("Error when writing output file:{}",e);
         }
+    }
 }

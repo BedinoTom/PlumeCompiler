@@ -13,7 +13,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":2,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -21,7 +22,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -29,7 +31,8 @@
                 "size":5,
                 "offset":2,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -46,7 +49,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":2,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -54,7 +58,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -62,7 +67,8 @@
                 "size":5,
                 "offset":2,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -79,7 +85,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":2,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -87,7 +94,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -95,7 +103,8 @@
                 "size":5,
                 "offset":2,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -112,7 +121,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":2,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -120,7 +130,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -128,7 +139,8 @@
                 "size":3,
                 "offset":2,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -145,7 +157,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":2,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -153,7 +166,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -161,7 +175,8 @@
                 "size":3,
                 "offset":2,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -178,7 +193,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":2,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -186,7 +202,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -194,13 +211,14 @@
                 "size":3,
                 "offset":2,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
        {
           "opcode":"0001111",
-          "name":"adds",
+          "name":"subs",
           "subname":"",
           "familly":"shift_sub_add_mov",
           "signature":"rri",
@@ -211,7 +229,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":2,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -219,7 +238,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -227,7 +247,8 @@
                 "size":3,
                 "offset":2,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -244,7 +265,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -252,7 +274,8 @@
                 "size":8,
                 "offset":1,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -269,7 +292,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -277,7 +301,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -294,7 +319,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -302,7 +328,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -319,7 +346,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -327,7 +355,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -344,7 +373,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -352,7 +382,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -369,7 +400,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -377,7 +409,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -394,7 +427,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -402,7 +436,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -419,7 +454,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -427,7 +463,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -444,7 +481,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -452,7 +490,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -469,7 +508,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -477,7 +517,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -494,7 +535,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -502,7 +544,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -510,7 +553,8 @@
                 "size":8,
                 "offset":2,
                 "offset_bin":-1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -527,7 +571,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -535,7 +580,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -552,7 +598,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -560,7 +607,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -577,7 +625,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -585,7 +634,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -594,7 +644,7 @@
           "name":"muls",
           "subname":"",
           "familly":"data_processing",
-          "signature":"rr",
+          "signature":"rrr",
           "operandes":[
              {
                 "phase":"input",
@@ -602,7 +652,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -610,15 +661,17 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
                 "type":"register",
                 "size":3,
                 "offset":2,
-                "offset_bin":0,
-                "optional":false
+                "offset_bin":1,
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -635,7 +688,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -643,7 +697,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -660,7 +715,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -668,7 +724,8 @@
                 "size":3,
                 "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -676,7 +733,8 @@
                 "size":3,
                 "offset":2,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -693,7 +751,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -701,7 +760,8 @@
                 "size":8,
                 "offset":1,
                 "offset_bin":1,
-                "optional":false
+                "optional":false,
+                "is_divide":true
              }
           ]
        },
@@ -718,7 +778,8 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
@@ -726,7 +787,8 @@
                 "size":8,
                 "offset":1,
                 "offset_bin":1,
-                "optional":true
+                "optional":true,
+                "is_divide":true
              }
           ]
        },
@@ -735,7 +797,7 @@
           "name":"add",
           "subname":"",
           "familly":"miscellaneous",
-          "signature":"wri",
+          "signature":"ri",
           "operandes":[
              {
                 "phase":"input",
@@ -743,23 +805,17 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":-1,
-                "optional":true
-             },
-             {
-                "phase":"input",
-                "type":"register",
-                "size":3,
-                "offset":1,
-                "offset_bin":-1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
                 "type":"imm",
-                "size":8,
-                "offset":2,
+                "size":7,
+                "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":true
              }
           ]
        },
@@ -768,7 +824,7 @@
           "name":"sub",
           "subname":"",
           "familly":"miscellaneous",
-          "signature":"wri",
+          "signature":"ri",
           "operandes":[
              {
                 "phase":"input",
@@ -776,23 +832,17 @@
                 "size":3,
                 "offset":0,
                 "offset_bin":-1,
-                "optional":true
-             },
-             {
-                "phase":"input",
-                "type":"register",
-                "size":3,
-                "offset":1,
-                "offset_bin":-1,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              },
              {
                 "phase":"input",
                 "type":"imm",
-                "size":8,
-                "offset":2,
+                "size":7,
+                "offset":1,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":true
              }
           ]
        },
@@ -809,7 +859,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -826,7 +877,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -843,7 +895,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -860,7 +913,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -877,7 +931,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -894,7 +949,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -911,7 +967,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -928,7 +985,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -945,7 +1003,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -962,7 +1021,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -979,7 +1039,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -996,7 +1057,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -1013,7 +1075,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -1030,7 +1093,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -1047,7 +1111,8 @@
                 "size":8,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        },
@@ -1064,7 +1129,8 @@
                 "size":11,
                 "offset":0,
                 "offset_bin":0,
-                "optional":false
+                "optional":false,
+                "is_divide":false
              }
           ]
        }
