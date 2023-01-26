@@ -25,8 +25,8 @@ struct Operande {
     phase : String,
     r#type : String,
     size : usize,
-    offset : usize,
-    offset_bin : usize,
+    offset : i8,
+    offset_bin : i8,
     optional : bool
 }
 
@@ -34,7 +34,6 @@ struct Operande {
 struct Instruct {
     name : String,
     subname : String,
-    regex_matcher : String,
     opcode : String,
     familly : String,
     signature : String,
@@ -46,10 +45,33 @@ struct Instructs {
     opcodes: Vec<Instruct>
 }
 
+impl Instructs {
+    fn match_instruction(&self, query:&InstructSet) -> Option<&Instruct> {
+        for instruct in self.opcodes.iter(){
+            if format!("{}{}", instruct.name,instruct.subname.to_ascii_uppercase()) == query.name {
+                if instruct.signature.len()>query.signature.len() {
+                    if instruct.signature.contains('w'){
+                        let new_signature = format!("w{}", query.signature);
+                        if instruct.signature==new_signature{
+                            return Some(instruct);
+                        }
+                    }
+                }else{
+                    if instruct.signature==query.signature{
+                        return Some(instruct);
+                    }
+                }
+            }
+        }
+        return None;
+    }
+}
+
 struct InstructSet {
     name : String,
     signature : String,
-    operandes : Vec<OperandeValue>
+    operandes : Vec<OperandeValue>,
+    line : u64
 }
 
 struct OperandeValue{
@@ -73,12 +95,37 @@ fn load_file(file_path:String) -> Option<String> {
     }
 }
 
+fn parse_instructs(data : String) -> Result<Instructs> {
+    let p: Result<Instructs> = serde_json::from_str(data.as_str());
+    p
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
         println!("Missing input file");
         process::exit(-1);
     }
+
+    let file_path = "opcodes_2.json";
+    println!("Load instructs file {}", file_path);
+
+    let contents = fs::read_to_string(file_path)
+        .expect("Should have been able to read the file");
+
+    let instructs = parse_instructs(contents.clone());
+
+    let content_instructs=match instructs {
+        Ok(o) => {
+            println!("There is {} instructions", o.opcodes.len());
+            o
+        },
+        Err(e) => {
+            println!("{}",e);
+            println!("Abort !");
+            process::exit(-1);
+        }
+    };
 
     println!("Load source file {}", args[1].clone());
     let content = match load_file(args[1].clone()) {
@@ -129,6 +176,7 @@ fn main() {
     }
 
     let mut instructions_vector : Vec<InstructSet> = Vec::new();
+    let mut line_count : u64 = 0;
     for line in lines_iter.into_inner() {
         match line.as_rule() {
             Rule::instruct_line => {
@@ -283,14 +331,26 @@ fn main() {
                             instructions_vector.push(InstructSet { 
                                 name: opcode_string.to_string(), 
                                 signature: signature_vector.into_iter().collect(), 
-                                operandes: operande_vector 
+                                operandes: operande_vector,
+                                line : line_count
                             });
                         },
                         _ => {}
                     }
                 }
+                line_count = line_count +1;
             }
             _ => {}
         }
+    }
+
+    for instruct in instructions_vector.iter() {
+        let match_instruct = match content_instructs.match_instruction(instruct){
+            Some(i) => i,
+            None => {
+                println!("Mismatch Instruct {} {}", instruct.name, instruct.signature);
+                process::exit(-1);
+            }
+        };
     }
 }

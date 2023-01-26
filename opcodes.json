@@ -12,21 +12,21 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 2,
+                    "offset_bin" : 2,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "imm",
                     "size" : 5,
                     "offset" : 2,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -43,21 +43,21 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 2,
+                    "offset_bin" : 2,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "imm",
                     "size" : 5,
                     "offset" : 2,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -74,21 +74,21 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 2,
+                    "offset_bin" : 2,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "imm",
                     "size" : 5,
                     "offset" : 2,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -105,21 +105,21 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 2,
+                    "offset_bin" : 2,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 2,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -136,21 +136,21 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 2,
+                    "offset_bin" : 2,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 2,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -167,21 +167,21 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 2,
+                    "offset_bin" : 2,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "imm",
                     "size" : 3,
                     "offset" : 2,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -198,21 +198,21 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 2,
+                    "offset_bin" : 2,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "imm",
                     "size" : 3,
                     "offset" : 2,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -229,7 +229,7 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 },
                 {
@@ -237,7 +237,7 @@
                     "type" : "imm",
                     "size" : 8,
                     "offset" : 1,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 }
             ]
@@ -254,14 +254,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -278,14 +278,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -302,14 +302,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -326,14 +326,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -350,14 +350,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -374,14 +374,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -398,14 +398,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -422,14 +422,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -446,14 +446,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -470,14 +470,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -494,14 +494,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -518,14 +518,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -542,14 +542,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -566,21 +566,21 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 2,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -597,14 +597,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -621,21 +621,21 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 2,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -652,14 +652,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "term",
                     "size" : 8,
                     "offset" : 1,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : false
                 }
             ]
@@ -676,14 +676,14 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "term",
                     "size" : 8,
                     "offset" : 1,
-                    "offser_bin" : 1,
+                    "offset_bin" : 1,
                     "optional" : true
                 }
             ]
@@ -700,21 +700,21 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : true
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "imm",
                     "size" : 8,
                     "offset" : 2,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -731,21 +731,21 @@
                     "type" : "register",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : true
                 },{
                     "phase" : "input",
                     "type" : "register",
                     "size" : 1,
                     "offset" : 1,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 },{
                     "phase" : "input",
                     "type" : "imm",
                     "size" : 8,
                     "offset" : 2,
-                    "offser_bin" : 0,
+                    "offset_bin" : 0,
                     "optional" : false
                 }
             ]
@@ -762,7 +762,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -779,7 +779,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -796,7 +796,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -813,7 +813,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -830,7 +830,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -847,7 +847,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -864,7 +864,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -881,7 +881,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -898,7 +898,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -915,7 +915,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -932,7 +932,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -949,7 +949,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -966,7 +966,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -983,7 +983,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
@@ -1000,7 +1000,7 @@
                     "type" : "label",
                     "size" : 1,
                     "offset" : 0,
-                    "offser_bin" : -1,
+                    "offset_bin" : -1,
                     "optional" : false
                 }
             ]
