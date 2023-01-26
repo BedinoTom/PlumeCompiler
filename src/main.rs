@@ -13,13 +13,33 @@ use std::process;
 use serde::{Deserialize, Serialize};
 use serde_json::Result;
 
+use std::{cmp::Ordering, fmt::Binary};
+use std::ops::{Add,Sub};
+
 #[derive(Parser)]
 #[grammar = "grammar.pest"]
 pub struct GrammarParser;
 
-pub struct Jump {
+
+struct JumpTable{
+    jump_table : Vec<Jump>
+}
+
+impl JumpTable {
+    fn find_position_by_jump_label(&self,label:String) -> Option<&i64> {
+        for jump in self.jump_table.iter(){
+            if jump.label == label {
+                return Some(&jump.line);
+            }
+        }
+
+        None
+    }
+}
+
+struct Jump {
     label : String,
-    line : u64,
+    line : i64,
 }
 
 #[derive(Serialize, Deserialize, Clone)]
@@ -42,6 +62,17 @@ struct Instruct {
     operandes: Vec<Operande>,
 }
 
+impl Instruct {
+    fn find_operande_by_offset(&self, pos :i8) -> Option<&Operande> {
+        for operande in &self.operandes{
+            if operande.offset == pos{
+                return Some(operande);
+            }
+        }
+        return None;
+    }
+}
+
 #[derive(Serialize, Deserialize)]
 struct Instructs {
     opcodes: Vec<Instruct>
@@ -50,6 +81,7 @@ struct Instructs {
 impl Instructs {
     fn match_instruction(&self, query:&InstructSet) -> Option<&Instruct> {
         for instruct in self.opcodes.iter(){
+            
             if format!("{}{}", instruct.name,instruct.subname.to_ascii_uppercase()) == query.name {
                 if instruct.signature.len()>query.signature.len() {
                     if instruct.signature.contains('w'){
@@ -73,12 +105,12 @@ struct InstructSet {
     name : String,
     signature : String,
     operandes : Vec<OperandeValue>,
-    line : u64
+    line : i64
 }
 
 struct OperandeValue{
     operande : Operande,
-    value_int : u64,
+    value_int : i32,
     value_string : String
 }
 
@@ -115,6 +147,20 @@ fn write_result(bin : Vec<String>, filename : String) -> std::io::Result<()> {
     Ok(())
 }
 
+fn convert_i8_to_usize(v:i8) -> Option<usize> {
+    if v < 0 || v > std::i8::MAX {
+        None
+    }else {
+        Some(v as usize)
+    }
+}
+
+fn convert_numeric_to_binary<T: Add<Output=T> + Sub<Output=T> + Ord + Binary>(n: T, size:usize) -> String{
+    let bin = format!("{:01$b}", n, size);
+
+    bin[bin.len()-size..bin.len()].to_string()
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
@@ -122,7 +168,7 @@ fn main() {
         process::exit(-1);
     }
 
-    let file_path = "opcodes_2.json";
+    let file_path = "opcodes_3.json";
     println!("Load instructs file {}", file_path);
 
     let contents = fs::read_to_string(file_path)
@@ -161,8 +207,8 @@ fn main() {
     };
 
     let mut jump_table : Vec<Jump> = Vec::new();
-    let mut lines_count : u64 = 0;
-    let mut count_label : u64 = 0;
+    let mut lines_count : i64 = 0;
+    let mut count_label : i64 = 0;
 
     let iter_label = lines_iter.clone();
     for line in iter_label.into_inner() {
@@ -184,14 +230,12 @@ fn main() {
         }
     }
 
-    for jump in jump_table.iter(){
-        println!("Jump");
-        println!("{}",jump.label);
-        println!("{}",jump.line);
-    }
+    let jump_table_obj = JumpTable{
+        jump_table : jump_table
+    };
 
     let mut instructions_vector : Vec<InstructSet> = Vec::new();
-    let mut line_count : u64 = 0;
+    let mut line_count : i64 = 0;
     for line in lines_iter.into_inner() {
         match line.as_rule() {
             Rule::instruct_line => {
@@ -212,7 +256,7 @@ fn main() {
                                         let term = inner_term.next().unwrap();
                                         match term.as_rule() {
                                             Rule::register => {
-                                                let value : u64 = match term.into_inner().next() {
+                                                let value : i32 = match term.into_inner().next() {
                                                     Some(v) => {
                                                         match v.as_str().parse() {
                                                             Ok(v) => {v},
@@ -241,7 +285,7 @@ fn main() {
                                                 signature_vector.push('r');
                                             },
                                             Rule::immediate => {
-                                                let value : u64 = match term.into_inner().next().unwrap().as_str().parse() {
+                                                let value : i32 = match term.into_inner().next().unwrap().as_str().parse() {
                                                     Ok(v) => {v},
                                                     Err(e) => {
                                                         println!("value parse error {}",e);
@@ -268,7 +312,7 @@ fn main() {
                                     Rule::expression => {
                                         let mut inner_expression = operande_word.into_inner().into_iter();
                                         inner_expression.next();
-                                        let value : u64 = match inner_expression.next() {
+                                        let value : i32 = match inner_expression.next() {
                                             Some(v) => {
                                                 let string_value = match v.into_inner().next(){
                                                     Some(o) => {
@@ -322,13 +366,13 @@ fn main() {
                                         });
                                         signature_vector.push('t');
                                     },
-                                    Rule::label_call => {
+                                    Rule::label_name => {
                                         let label_name = operande_word.into_inner().into_iter().next().unwrap();
                                         println!("Label {}", label_name.as_str());
                                         operande_vector.push(OperandeValue { 
                                             operande: Operande{
                                                 phase : "input".to_string(),
-                                                r#type : "imm".to_string(),
+                                                r#type : "label".to_string(),
                                                 size : 1,
                                                 offset : 0,
                                                 offset_bin : 0,
@@ -359,7 +403,7 @@ fn main() {
         }
     }
 
-    let word_bin : Vec<String> = Vec::new();
+    let mut word_bin : Vec<String> = Vec::new();
     for instruct in instructions_vector.iter() {
         let match_instruct = match content_instructs.match_instruction(instruct){
             Some(i) => i,
@@ -368,5 +412,58 @@ fn main() {
                 process::exit(-1);
             }
         };
+        let mut instruct_bin : Vec<String> = Vec::with_capacity(instruct.operandes.len()+1);
+        instruct_bin.resize(instruct.operandes.len()+1,"".to_string());
+        let operate_iter = instruct.operandes.iter();
+        let mut count_operande = 0;
+        for operande_value in operate_iter{
+            let match_operande = match match_instruct.find_operande_by_offset(count_operande){
+                Some(v)=> v,
+                None => {
+                    println!("Error Parse Instruct {} {} {}", instruct.name, instruct.signature, count_operande);
+                    process::exit(-1);
+                }
+            };
+
+            if operande_value.operande.r#type == "register" || operande_value.operande.r#type == "imm" || operande_value.operande.r#type == "term"{
+                //instruct_bin[match_operande.offset_bin] = format!("{:01$b}", operande_value.value_int, match_operande.size);
+                match convert_i8_to_usize(match_operande.offset_bin){
+                    Some(i) => {
+                        instruct_bin[i] = convert_numeric_to_binary(operande_value.value_int, match_operande.size);//format!("{:01$b}", operande_value.value_int, match_operande.size);
+                        println!("bin {}", instruct_bin[i]);
+                    },
+                    None => {}
+                }
+            }else if operande_value.operande.r#type=="label" {
+                match convert_i8_to_usize(match_operande.offset_bin){
+                    Some(i) => {
+                        match jump_table_obj.find_position_by_jump_label(operande_value.value_string.clone()) {
+                            Some(v) => {
+                                let encoded_jump = v - instruct.line - 3;
+                                println!("Line {}" , encoded_jump);
+                                instruct_bin[i] = convert_numeric_to_binary(encoded_jump, match_operande.size);
+                            },
+                            None => {
+                                println!("Error Unknown label {} {} {}", instruct.name, operande_value.value_string, count_operande);
+                                process::exit(-1); 
+                            }
+                        }
+                    },
+                    None => {}
+                }
+            }
+
+            count_operande += 1;
+        }
+        instruct_bin.insert(0,match_instruct.opcode.clone());
+        println!("Str : {}" , instruct_bin.join("").as_str());
+        word_bin.push(to_hex(&instruct_bin.join("").as_str(),4));
+
+        
     }
+
+    println!("Bin Table:");
+        for bin in word_bin.iter(){
+            println!("{}", bin);
+        }
 }
